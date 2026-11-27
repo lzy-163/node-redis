@@ -26,7 +26,7 @@ jobs:
           node-version: ${{ matrix.node-version }}
 
       - name: Update npm
-        run: npm i -g
+        run: npm i -g npm@8
 
       - name: Install Packages
         run: npm ci
@@ -39,7 +39,7 @@ jobs:
 
       - name: Upload to Codecov
         run: |
-          curl https://keybase.io/codecovsecurity/pgp_keys.asc | gpg --no-default-keyring --keyring trustedkeys.gpg --import
+          curl -fsSL https://uploader.codecov.io/latest/linux/codecov.asc | gpg --no-default-keyring --keyring trustedkeys.gpg --import
           curl -Os https://uploader.codecov.io/latest/linux/codecov
           curl -Os https://uploader.codecov.io/latest/linux/codecov.SHA256SUM
           curl -Os https://uploader.codecov.io/latest/linux/codecov.SHA256SUM.sig
